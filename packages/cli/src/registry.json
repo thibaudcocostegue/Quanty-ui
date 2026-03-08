@@ -1,0 +1,29 @@
+{
+  "version": "1",
+  "baseUrl": "https://raw.githubusercontent.com/thibaudcocostegue/Quanty-ui/cli-v0.1.0/components",
+  "components": {
+    "badge": {
+      "files": [
+        "badge/QuantBadge.vue",
+        "badge/index.ts"
+      ],
+      "dependencies": []
+    },
+    "button": {
+      "files": [
+        "button/QuantButton.vue",
+        "button/index.ts"
+      ],
+      "dependencies": []
+    },
+    "table": {
+      "files": [
+        "table/QuantTable.vue",
+        "table/index.ts"
+      ],
+      "dependencies": [
+        "button"
+      ]
+    }
+  }
+}
