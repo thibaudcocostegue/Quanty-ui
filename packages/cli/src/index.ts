@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { defineCommand, runMain } from 'citty'
 import { initCommand } from './commands/init'
 import { addCommand } from './commands/add'
