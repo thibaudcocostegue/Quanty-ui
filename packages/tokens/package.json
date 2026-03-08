@@ -1,11 +1,14 @@
 {
   "name": "@quanty-ui/tokens",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Design tokens for Quanty UI",
   "type": "module",
   "style": "./index.css",
   "exports": {
-    ".": "./index.css"
+    ".": "./index.css",
+    "./reset.css": "./reset.css",
+    "./typography.css": "./typography.css",
+    "./midnight.css": "./midnight.css"
   },
   "repository": {
     "type": "git",
@@ -21,5 +24,8 @@
     "midnight.css",
     "reset.css",
     "typography.css"
+  ],
+  "sideEffects": [
+    "*.css"
   ]
 }
