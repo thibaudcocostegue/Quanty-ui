@@ -1,0 +1,121 @@
+/**
+ * ============================================================
+ * QUANT UI — Reset
+ * Neutralise les styles navigateur. Ne pas modifier.
+ * ============================================================
+ */
+
+/* Box sizing universel */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Indique au navigateur d'utiliser le dark scheme natif
+   (scrollbars, inputs, select, etc.) */
+:root {
+  color-scheme: dark;
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Titres sans style par défaut */
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* Listes sans puces */
+ul, ol {
+  list-style: none;
+}
+
+/* Liens sans soulignement */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Médias en bloc — évite l'espace fantôme sous les images */
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+/* Formulaires — héritage de la font (les navigateurs ne le font pas nativement) */
+input,
+button,
+textarea,
+select,
+optgroup {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Tables propres */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+fieldset {
+  border: none;
+}
+
+/* Summary / details */
+summary {
+  cursor: pointer;
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Focus uniquement au clavier, pas au clic */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}

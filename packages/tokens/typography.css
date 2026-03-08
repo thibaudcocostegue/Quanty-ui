@@ -1,0 +1,114 @@
+/**
+ * ============================================================
+ * QUANT UI — Typography
+ * Applique les tokens sur les éléments HTML de base.
+ * ============================================================
+ */
+
+body {
+  font-family:  var(--font-sans);
+  font-size:    var(--font-size-base);
+  font-weight:  var(--font-weight-normal);
+  line-height:  var(--line-height-normal);
+  color:        var(--text-primary);
+  background:   var(--surface-base);
+}
+
+/* ── TITRES ── */
+h1 { font-size: var(--font-size-2xl); font-weight: var(--font-weight-semibold); line-height: var(--line-height-tight); }
+h2 { font-size: var(--font-size-xl);  font-weight: var(--font-weight-semibold); line-height: var(--line-height-tight); }
+h3 { font-size: var(--font-size-lg);  font-weight: var(--font-weight-medium);   line-height: var(--line-height-tight); }
+h4 { font-size: var(--font-size-md);  font-weight: var(--font-weight-medium);   line-height: var(--line-height-tight); }
+h5 { font-size: var(--font-size-base);font-weight: var(--font-weight-medium);   line-height: var(--line-height-tight); }
+h6 { font-size: var(--font-size-sm);  font-weight: var(--font-weight-medium);   line-height: var(--line-height-tight); }
+
+/* ── TEXTE ── */
+p {
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+}
+
+strong, b {
+  font-weight: var(--font-weight-semibold);
+}
+
+small {
+  font-size:  var(--font-size-sm);
+  color:      var(--text-secondary);
+}
+
+/* ── LIENS ── */
+a {
+  color: var(--text-link);
+  transition: opacity var(--transition-fast);
+}
+a:hover {
+  opacity: 0.8;
+}
+
+/* ── CODE — critique pour le quant ── */
+code,
+kbd,
+samp {
+  font-family:            var(--font-mono);
+  font-size:              var(--font-size-sm);
+  font-variant-numeric:   tabular-nums;  /* chiffres alignés */
+  background:             var(--surface-inset);
+  border:                 1px solid var(--border-default);
+  border-radius:          var(--radius-sm);
+  padding:                1px 5px;
+}
+
+pre {
+  font-family:  var(--font-mono);
+  font-size:    var(--font-size-sm);
+  background:   var(--surface-inset);
+  border:       1px solid var(--border-default);
+  border-radius:var(--radius-md);
+  padding:      var(--spacing-4);
+  overflow-x:   auto;
+  line-height:  var(--line-height-loose);
+}
+
+pre code {
+  background:   transparent;
+  border:       none;
+  padding:      0;
+  font-size:    inherit;
+}
+
+/* ── ÉLÉMENTS DE STRUCTURE ── */
+hr {
+  border: none;
+  border-top: 1px solid var(--border-default);
+  margin: var(--spacing-4) 0;
+}
+
+blockquote {
+  border-left: 3px solid var(--border-strong);
+  padding-left: var(--spacing-4);
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ── SÉLECTION ── */
+::selection {
+  background: color-mix(in srgb, var(--color-signal) 25%, transparent);
+  color: var(--text-primary);
+}
+
+/* ── SCROLLBAR (Webkit) ── */
+::-webkit-scrollbar {
+  width:  6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-base);
+}
+::-webkit-scrollbar-thumb {
+  background:    var(--border-strong);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}

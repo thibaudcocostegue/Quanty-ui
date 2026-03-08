@@ -1,0 +1,54 @@
+{
+  "name": "@quant-ui/core",
+  "version": "0.1.0",
+  "description": "Design system for quantitative finance Vue 3 applications",
+  "license": "MIT",
+  "author": "Thibaud",
+  "keywords": [
+    "vue",
+    "design-system",
+    "quant",
+    "finance",
+    "components"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thibaudcocostegue/Quanty-ui"
+  },
+  "type": "module",
+  "main": "./dist/quant-ui.umd.cjs",
+  "module": "./dist/quant-ui.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/quant-ui.js",
+      "require": "./dist/quant-ui.umd.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit",
+    "lint": "eslint src --ext .vue,.ts"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.0",
+    "typescript": "^5.3.0",
+    "vite": "^5.0.0",
+    "vite-plugin-dts": "^3.7.0",
+    "vue": "^3.4.0",
+    "vue-tsc": "^2.0.0"
+  }
+}

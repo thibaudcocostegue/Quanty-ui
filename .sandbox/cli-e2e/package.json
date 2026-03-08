@@ -1,0 +1,12 @@
+{
+  "name": "cli-e2e",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@quant-ui/tokens": "file:../../packages/tokens",
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  }
+}

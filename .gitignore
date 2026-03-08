@@ -1,0 +1,64 @@
+# ── Dependencies ──
+node_modules/
+.pnp
+.pnp.js
+
+# ── Build outputs ──
+dist/
+dist-ssr/
+*.local
+
+# ── Logs ──
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ── Editor directories and files ──
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ── Testing ──
+coverage/
+*.lcov
+.nyc_output
+
+# ── Temporary files ──
+*.tmp
+*.temp
+.cache/
+
+# ── Environment variables ──
+.env
+.env.local
+.env.*.local
+
+# ── TypeScript ──
+*.tsbuildinfo
+
+# ── macOS ──
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ── Package manager locks (garder celui que vous utilisez) ──
+# Décommentez selon votre gestionnaire de paquets préféré
+# package-lock.json  # npm
+# yarn.lock          # yarn
+# pnpm-lock.yaml     # pnpm
+
+
+
+temp.md
