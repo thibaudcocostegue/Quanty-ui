@@ -1,8 +1,12 @@
 {
-  "name": "@quant-ui/tokens",
+  "name": "@quanty-ui/tokens",
   "version": "0.1.0",
   "description": "Design tokens for Quanty UI",
   "type": "module",
+  "style": "./index.css",
+  "exports": {
+    ".": "./index.css"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/thibaudcocostegue/Quanty-ui",
@@ -13,6 +17,7 @@
   },
   "homepage": "https://github.com/thibaudcocostegue/Quanty-ui#readme",
   "files": [
+    "index.css",
     "midnight.css",
     "reset.css",
     "typography.css"

@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "baseUrl": "https://raw.githubusercontent.com/thibaudcocostegue/Quanty-ui/cli-v0.1.0/components",
+  "baseUrl": "https://raw.githubusercontent.com/thibaudcocostegue/Quanty-ui/quanty-ui-cli-v0.1.0/components",
   "components": {
     "badge": {
       "files": [
@@ -16,6 +16,13 @@
       ],
       "dependencies": []
     },
+    "card": {
+      "files": [
+        "card/QuantCard.vue",
+        "card/index.ts"
+      ],
+      "dependencies": []
+    },
     "table": {
       "files": [
         "table/QuantTable.vue",
@@ -24,6 +31,27 @@
       "dependencies": [
         "button"
       ]
+    },
+    "heading": {
+      "files": [
+        "heading/QuantHeading.vue",
+        "heading/index.ts"
+      ],
+      "dependencies": []
+    },
+    "text": {
+      "files": [
+        "text/QuantText.vue",
+        "text/index.ts"
+      ],
+      "dependencies": []
+    },
+    "code": {
+      "files": [
+        "code/QuantCode.vue",
+        "code/index.ts"
+      ],
+      "dependencies": []
     }
   }
 }

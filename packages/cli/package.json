@@ -1,5 +1,5 @@
 {
-  "name": "@quant-ui/cli",
+  "name": "@quanty-ui/cli",
   "version": "0.1.0",
   "description": "CLI for adding Quanty UI components to Vue 3 projects",
   "type": "module",
@@ -13,15 +13,19 @@
   },
   "homepage": "https://github.com/thibaudcocostegue/Quanty-ui#readme",
   "bin": {
-    "quant-ui": "./dist/index.mjs"
+    "quanty-ui": "./dist/index.mjs"
   },
   "dependencies": {
+    "@clack/prompts": "^1.1.0",
+    "@quanty-ui/cli": "file:/Users/tibo/projet/Quanty-ui/packages/cli/quanty-ui-cli-0.1.0.tgz",
     "citty": "^0.1.6",
-    "clack": "^0.1.0",
     "fs-extra": "^11.3.4",
     "ofetch": "^1.5.1",
     "picocolors": "^1.1.1",
     "tsx": "^4.21.0"
+  },
+  "scripts": {
+    "build": "unbuild"
   },
   "devDependencies": {
     "typescript": "^5.9.3",

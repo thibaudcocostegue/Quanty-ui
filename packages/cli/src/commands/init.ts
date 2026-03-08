@@ -1,9 +1,8 @@
-import { createInterface } from 'node:readline/promises'
-import { stdin as input, stdout as output } from 'node:process'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
+import { cancel, isCancel, text } from '@clack/prompts'
 
 type PackageManager = 'pnpm' | 'npm' | 'yarn'
 
@@ -74,15 +73,20 @@ function isVueTsProject(packageJson: PackageJson): boolean {
 
 async function askComponentsDir(): Promise<string> {
   const defaultDir = 'src/components/ui'
-  const rl = createInterface({ input, output })
+  const answer = await text({
+    message: 'Components directory',
+    placeholder: defaultDir,
+    defaultValue: defaultDir,
+  })
 
-  try {
-    const answer = await rl.question(`Components directory (default: ${defaultDir}): `)
-    const value = answer.trim()
-    return value.length > 0 ? normalizeDirectory(value) : defaultDir
-  } finally {
-    rl.close()
+  if (isCancel(answer)) {
+    cancel('Operation cancelled.')
+    process.exitCode = 1
+    return defaultDir
   }
+
+  const value = String(answer).trim()
+  return value.length > 0 ? normalizeDirectory(value) : defaultDir
 }
 
 function normalizeDirectory(value: string): string {
@@ -97,9 +101,9 @@ function detectPackageManager(cwd: string): PackageManager {
 
 function installTokens(packageManager: PackageManager, cwd: string): boolean {
   const commandByManager: Record<PackageManager, { command: string; args: string[] }> = {
-    pnpm: { command: 'pnpm', args: ['add', '@quant-ui/tokens'] },
-    npm: { command: 'npm', args: ['install', '@quant-ui/tokens'] },
-    yarn: { command: 'yarn', args: ['add', '@quant-ui/tokens'] },
+    pnpm: { command: 'pnpm', args: ['add', '@quanty-ui/tokens'] },
+    npm: { command: 'npm', args: ['install', '@quanty-ui/tokens'] },
+    yarn: { command: 'yarn', args: ['add', '@quanty-ui/tokens'] },
   }
 
   const { command, args } = commandByManager[packageManager]
@@ -111,7 +115,7 @@ function installTokens(packageManager: PackageManager, cwd: string): boolean {
 
   const localTokensPath = getLocalTokensPath()
   if (localTokensPath && existsSync(localTokensPath)) {
-    console.warn('Failed to install @quant-ui/tokens from npm. Trying local package fallback...')
+    console.warn('Failed to install @quanty-ui/tokens from npm. Trying local package fallback...')
     const fallbackArgsByManager: Record<PackageManager, { command: string; args: string[] }> = {
       pnpm: { command: 'pnpm', args: ['add', localTokensPath] },
       npm: { command: 'npm', args: ['install', localTokensPath] },
@@ -125,7 +129,7 @@ function installTokens(packageManager: PackageManager, cwd: string): boolean {
     }
   }
 
-  console.error('Failed to install @quant-ui/tokens.')
+  console.error('Failed to install @quanty-ui/tokens.')
   process.exitCode = 1
   return false
 }
@@ -162,9 +166,9 @@ function tryInjectTokensImports(cwd: string): boolean {
   }
 
   const imports = [
-    "import '@quant-ui/tokens/reset.css'",
-    "import '@quant-ui/tokens/typography.css'",
-    "import '@quant-ui/tokens/midnight.css'",
+    "import '@quanty-ui/tokens/reset.css'",
+    "import '@quanty-ui/tokens/typography.css'",
+    "import '@quanty-ui/tokens/midnight.css'",
   ]
 
   const content = readFileSync(mainPath, 'utf-8')

@@ -1,8 +1,7 @@
-import { createInterface } from 'node:readline/promises'
-import { stdin as input, stdout as output } from 'node:process'
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { cancel, confirm, isCancel } from '@clack/prompts'
 import pc from 'picocolors'
 import { getRegistry } from '../utils/registry'
 import { fetchFile } from '../utils/fetch'
@@ -25,14 +24,14 @@ export async function addCommand(options: AddOptions): Promise<void> {
   const requestedComponents = options.components.map((item) => item.trim()).filter(Boolean)
 
   if (requestedComponents.length === 0) {
-    console.error('Please provide at least one component name. Example: quant-ui add badge')
+    console.error('Please provide at least one component name. Example: quanty-ui add badge')
     process.exitCode = 1
     return
   }
 
   const config = getQuantUiConfig(cwd)
   if (!config) {
-    console.error('quant-ui.json not found. Please run "quant-ui init" first.')
+    console.error('quant-ui.json not found. Please run "quanty-ui init" first.')
     process.exitCode = 1
     return
   }
@@ -161,14 +160,18 @@ function resolveComponentsWithDependencies(
 }
 
 async function askOverwrite(path: string): Promise<boolean> {
-  const rl = createInterface({ input, output })
-  try {
-    const answer = await rl.question(`File already exists: ${path}. Overwrite? (y/N): `)
-    const normalized = answer.trim().toLowerCase()
-    return normalized === 'y' || normalized === 'yes'
-  } finally {
-    rl.close()
+  const answer = await confirm({
+    message: `File already exists: ${path}. Overwrite?`,
+    initialValue: false,
+  })
+
+  if (isCancel(answer)) {
+    cancel('Operation cancelled.')
+    process.exitCode = 1
+    return false
   }
+
+  return Boolean(answer)
 }
 
 function printSummary(components: string[], added: string[], skipped: string[]): void {
