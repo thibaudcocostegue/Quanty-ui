@@ -29,6 +29,12 @@ lerna-debug.log*
 *.sln
 *.sw?
 
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+
+
 # ── Testing ──
 coverage/
 *.lcov
