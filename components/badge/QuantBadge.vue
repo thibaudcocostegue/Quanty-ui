@@ -39,7 +39,7 @@ const badgeClass = computed(() => [
   justify-content: center;
   gap: var(--spacing-1);
   border: 1px solid var(--border-default);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   font-weight: var(--font-weight-medium);
   line-height: 1;
   white-space: nowrap;
@@ -57,7 +57,7 @@ const badgeClass = computed(() => [
 }
 
 .quant-badge--pill {
-  border-radius: var(--radius-full);
+  border-radius: 0;
 }
 
 .quant-badge--neutral {

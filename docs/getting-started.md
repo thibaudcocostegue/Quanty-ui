@@ -91,6 +91,16 @@ Quanty UI follows the **shadcn model**:
 
 ## Next Steps
 
+- Configure palette switching with `data-quant-theme`:
+
+```typescript
+// midnight is default (remove attribute)
+document.documentElement.removeAttribute('data-quant-theme')
+
+// activate fund-color palette
+document.documentElement.setAttribute('data-quant-theme', 'fund-color')
+```
+
 - Learn about [Design Tokens](/tokens)
 - Browse [Components](/components/badge)
 - Check out the [GitHub repository](https://github.com/thibaudcocostegue/Quanty-ui)

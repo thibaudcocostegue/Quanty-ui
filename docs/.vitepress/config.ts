@@ -33,6 +33,19 @@ export default defineConfig({
           { text: 'QuantCard', link: '/components/card' },
           { text: 'QuantTable', link: '/components/table' }
         ]
+      },
+      {
+        text: 'Foundation',
+        items: [
+          { text: 'QuantAppHeader', link: '/components/app-header' },
+          { text: 'QuantPanel', link: '/components/panel' },
+          { text: 'QuantSectionTitle', link: '/components/section-title' },
+          { text: 'QuantTabs', link: '/components/tabs' },
+          { text: 'QuantKpiBlock', link: '/components/kpi-block' },
+          { text: 'QuantStatusBadge', link: '/components/status-badge' },
+          { text: 'QuantInputField', link: '/components/input-field' },
+          { text: 'QuantLogRow', link: '/components/log-row' }
+        ]
       }
     ],
     socialLinks: [

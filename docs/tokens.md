@@ -12,6 +12,44 @@ Tokens are organized in three layers:
 
 **Import order matters.** When you import `@quanty-ui/tokens`, these files are loaded in the correct sequence.
 
+## Theme Palettes
+
+Quanty UI now ships with two palettes:
+
+- `midnight` (default)
+- `fund-color`
+
+### Activate fund-color
+
+```typescript
+document.documentElement.setAttribute('data-quant-theme', 'fund-color')
+```
+
+### Revert to midnight
+
+```typescript
+document.documentElement.removeAttribute('data-quant-theme')
+```
+
+### fund-color core values
+
+| Token | Value |
+|-------|-------|
+| Base background | `#000000` |
+| Structure border | `#888888` |
+| Signal accent | `#FF9900` |
+| Primary data text | `#FFFFFF` |
+
+The palette is intentionally closed and reuses existing semantic tokens (`--color-signal`, `--text-primary`, `--border-default`, etc.) so components switch theme without local overrides.
+
+### Foundation shape rule
+
+For the UI foundation layer (including `fund-color`), functional components must use:
+
+- `border-radius: 0`
+
+This keeps visual structure consistent across products.
+
 ## Surfaces (Backgrounds & Layers)
 
 | Token | Value | Usage |
