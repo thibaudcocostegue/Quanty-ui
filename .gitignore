@@ -35,7 +35,7 @@ lerna-debug.log*
 .idea/
 *.suo
 *.ntvs*
-
+.temp/
 
 # ── Testing ──
 coverage/
