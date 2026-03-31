@@ -116,6 +116,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for full git workflow.
 ## Key Constraints
 
 - ✅ Use CSS custom properties exclusively (never hardcode colors/spacing)
+- ✅ Functional surfaces use square corners (no rounded corners)
 - ✅ Keep components under 60 lines when possible
 - ✅ `<style scoped>` mandatory on all components
 - ✅ TypeScript props with explicit types and defaults

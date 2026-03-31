@@ -1,6 +1,6 @@
 {
   "name": "@quanty-ui/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI for adding Quanty UI components to Vue 3 projects",
   "type": "module",
   "repository": {

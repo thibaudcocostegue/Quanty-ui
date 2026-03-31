@@ -1,11 +1,15 @@
 {
   "name": "@quanty-ui/tokens",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Design tokens for Quanty UI",
   "type": "module",
   "style": "./index.css",
   "exports": {
-    ".": "./index.css"
+    ".": "./index.css",
+    "./reset.css": "./reset.css",
+    "./typography.css": "./typography.css",
+    "./midnight.css": "./midnight.css",
+    "./fund-color.css": "./fund-color.css"
   },
   "repository": {
     "type": "git",
@@ -18,8 +22,12 @@
   "homepage": "https://github.com/thibaudcocostegue/Quanty-ui#readme",
   "files": [
     "index.css",
+    "fund-color.css",
     "midnight.css",
     "reset.css",
     "typography.css"
+  ],
+  "sideEffects": [
+    "*.css"
   ]
 }

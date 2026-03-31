@@ -1,8 +1,8 @@
-import { existsSync, readFileSync, writeFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { dirname, relative, resolve } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
-import { cancel, isCancel, text } from '@clack/prompts'
+import { cancel, isCancel, select, text } from '@clack/prompts'
 
 type PackageManager = 'pnpm' | 'npm' | 'yarn'
 
@@ -12,8 +12,12 @@ interface InitOptions {
 
 interface QuantUiConfig {
   componentsDir: string
+  theme: QuantTheme
+  customThemeFile?: string
   tokensImported: boolean
 }
+
+type QuantTheme = 'midnight' | 'fund-color' | 'custom'
 
 interface PackageJson {
   dependencies?: Record<string, string>
@@ -39,23 +43,33 @@ export async function initCommand(options: InitOptions = {}) {
   }
 
   const componentsDir = await askComponentsDir()
+  const theme = await askTheme()
   const packageManager = detectPackageManager(cwd)
+  const customThemeFile = theme === 'custom' ? ensureCustomThemeFile(cwd) : undefined
 
   writeQuantUiConfig(cwd, {
     componentsDir,
+    theme,
+    customThemeFile,
     tokensImported: false,
   })
 
   const tokensInstalled = installTokens(packageManager, cwd)
-  const tokensImported = tokensInstalled ? tryInjectTokensImports(cwd) : false
+  const tokensImported = tokensInstalled ? tryInjectTokensImports(cwd, theme, customThemeFile) : false
 
   writeQuantUiConfig(cwd, {
     componentsDir,
+    theme,
+    customThemeFile,
     tokensImported,
   })
 
   console.log('✅ Quant UI initialized successfully.')
   console.log(`- componentsDir: ${componentsDir}`)
+  console.log(`- theme: ${theme}`)
+  if (customThemeFile) {
+    console.log(`- customThemeFile: ${customThemeFile}`)
+  }
   console.log(`- packageManager: ${packageManager}`)
   console.log(`- tokensImported: ${tokensImported}`)
 }
@@ -91,6 +105,26 @@ async function askComponentsDir(): Promise<string> {
 
 function normalizeDirectory(value: string): string {
   return value.replace(/\\+/g, '/').replace(/\/$/, '')
+}
+
+async function askTheme(): Promise<QuantTheme> {
+  const answer = await select({
+    message: 'Default theme for this project',
+    options: [
+      { value: 'midnight', label: 'midnight (default Quant theme)' },
+      { value: 'fund-color', label: 'fund-color (strict black/orange/gray/white)' },
+      { value: 'custom', label: 'custom (generate local theme file)' },
+    ],
+    initialValue: 'midnight',
+  })
+
+  if (isCancel(answer)) {
+    cancel('Operation cancelled.')
+    process.exitCode = 1
+    return 'midnight'
+  }
+
+  return answer as QuantTheme
 }
 
 function detectPackageManager(cwd: string): PackageManager {
@@ -151,7 +185,23 @@ function writeQuantUiConfig(cwd: string, config: QuantUiConfig): void {
   writeFileSync(path, `${JSON.stringify(config, null, 2)}\n`, 'utf-8')
 }
 
-function tryInjectTokensImports(cwd: string): boolean {
+function ensureCustomThemeFile(cwd: string): string {
+  const relativePath = 'src/styles/quant-theme.custom.css'
+  const absolutePath = resolve(cwd, relativePath)
+
+  if (!existsSync(absolutePath)) {
+    mkdirSync(resolve(cwd, 'src/styles'), { recursive: true })
+    writeFileSync(
+      absolutePath,
+      `/* Quant UI custom theme overrides */\n[data-quant-theme='custom'] {\n  /* Keep semantic tokens only */\n  --surface-base: #000000;\n  --surface-raised: #050505;\n  --text-primary: #ffffff;\n  --text-secondary: #9b9b9b;\n  --color-signal: #ff9900;\n  --border-default: #888888;\n}\n`,
+      'utf-8'
+    )
+  }
+
+  return relativePath
+}
+
+function tryInjectTokensImports(cwd: string, theme: QuantTheme, customThemeFile?: string): boolean {
   const mainCandidates = [
     resolve(cwd, 'src/main.ts'),
     resolve(cwd, 'src/main.js'),
@@ -165,20 +215,42 @@ function tryInjectTokensImports(cwd: string): boolean {
     return false
   }
 
-  const imports = [
-    "import '@quanty-ui/tokens/reset.css'",
-    "import '@quanty-ui/tokens/typography.css'",
-    "import '@quanty-ui/tokens/midnight.css'",
-  ]
-
   const content = readFileSync(mainPath, 'utf-8')
-  const linesToAdd = imports.filter((line) => !content.includes(line))
+  const linesToAdd: string[] = []
 
-  if (linesToAdd.length === 0) {
+  if (!content.includes("import '@quanty-ui/tokens'")) {
+    linesToAdd.push("import '@quanty-ui/tokens'")
+  }
+
+  if (theme === 'custom' && customThemeFile) {
+    const customAbsolutePath = resolve(cwd, customThemeFile)
+    let importPath = relative(dirname(mainPath), customAbsolutePath).replace(/\\+/g, '/')
+    if (!importPath.startsWith('.')) {
+      importPath = `./${importPath}`
+    }
+    const customImport = `import '${importPath}'`
+    if (!content.includes(customImport)) {
+      linesToAdd.push(customImport)
+    }
+  }
+
+  const applyThemeSnippet = buildThemeApplySnippet(theme)
+  const hasThemeSnippet = content.includes("// quanty-ui: enforce configured theme")
+  const nextContentBase = linesToAdd.length > 0 ? `${linesToAdd.join('\n')}\n${content}` : content
+
+  if (linesToAdd.length === 0 && hasThemeSnippet) {
     return true
   }
 
-  const nextContent = `${linesToAdd.join('\n')}\n${content}`
+  const nextContent = hasThemeSnippet ? nextContentBase : `${applyThemeSnippet}\n${nextContentBase}`
   writeFileSync(mainPath, nextContent, 'utf-8')
   return true
+}
+
+function buildThemeApplySnippet(theme: QuantTheme): string {
+  if (theme === 'midnight') {
+    return "// quanty-ui: enforce configured theme\ndocument.documentElement.removeAttribute('data-quant-theme')"
+  }
+
+  return `// quanty-ui: enforce configured theme\ndocument.documentElement.setAttribute('data-quant-theme', '${theme}')`
 }

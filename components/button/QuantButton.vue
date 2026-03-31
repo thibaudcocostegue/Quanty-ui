@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 
 type QuantButtonTone = 'signal' | 'neutral' | 'profit' | 'loss' | 'warning'
-type QuantButtonVariant = 'solid' | 'outline' | 'ghost'
+type QuantButtonVariant = 'solid' | 'outline' | 'ghost' | 'primary' | 'secondary'
 type QuantButtonSize = 'sm' | 'md' | 'lg'
 
 interface QuantButtonProps {
@@ -71,11 +71,12 @@ function onClick(event: MouseEvent): void {
   align-items: center;
   justify-content: center;
   gap: var(--spacing-2);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   border: 1px solid transparent;
   font-weight: var(--font-weight-medium);
   transition: background-color var(--transition-base), color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-fast);
   user-select: none;
+  cursor: pointer;
 }
 
 .quant-button:disabled {
@@ -166,6 +167,18 @@ function onClick(event: MouseEvent): void {
   background: transparent;
 }
 
+.quant-button--primary {
+  background: var(--surface-base);
+  border-color: var(--color-signal);
+  color: var(--color-signal);
+}
+
+.quant-button--secondary {
+  background: var(--surface-base);
+  border-color: var(--text-secondary);
+  color: var(--text-secondary);
+}
+
 .quant-button--ghost.quant-button--signal {
   color: var(--color-signal);
 }
@@ -189,6 +202,18 @@ function onClick(event: MouseEvent): void {
 .quant-button--ghost:not(:disabled):hover,
 .quant-button--outline:not(:disabled):hover {
   background: color-mix(in srgb, var(--surface-subtle) 60%, transparent);
+}
+
+.quant-button--primary:not(:disabled):hover,
+.quant-button--primary:not(:disabled):active {
+  background: var(--color-signal);
+  color: var(--text-inverse);
+}
+
+.quant-button--secondary:not(:disabled):hover,
+.quant-button--secondary:not(:disabled):active {
+  background: var(--text-secondary);
+  color: var(--text-inverse);
 }
 
 .quant-button__content {

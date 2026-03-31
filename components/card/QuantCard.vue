@@ -36,8 +36,8 @@ withDefaults(defineProps<QuantCardProps>(), {
 <style scoped>
 .quant-card {
   background: var(--surface-raised);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  border-radius: 0;
+  box-shadow: none;
   color: var(--text-primary);
 }
 
@@ -59,7 +59,7 @@ withDefaults(defineProps<QuantCardProps>(), {
 .quant-card__title {
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
-  color: var(--text-primary);
+  color: var(--color-signal);
 }
 
 .quant-card__subtitle {

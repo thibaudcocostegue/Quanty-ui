@@ -26,7 +26,12 @@ Run the CLI init command to set up your project:
 npx @quanty-ui/cli init
 ```
 
-This will prompt you for a components directory (default: `src/components/quant`) and install the necessary dependencies.
+This will prompt you for:
+
+- Components directory (default: `src/components/quant`)
+- Default theme (`midnight`, `fund-color`, or `custom`)
+
+Then it will install dependencies and enforce the selected theme in your app entry file.
 
 ### 3. Import Tokens
 
@@ -90,6 +95,39 @@ Quanty UI follows the **shadcn model**:
 - **Design tokens as npm package** — single source of truth for colors, spacing, typography
 
 ## Next Steps
+
+- Theme behavior:
+
+```typescript
+// Theme is enforced by CLI init choice in main.ts.
+// No runtime switcher is generated for client apps.
+```
+
+- Manual switching examples with `data-quant-theme`:
+
+```typescript
+// midnight is default (remove attribute)
+document.documentElement.removeAttribute('data-quant-theme')
+
+// activate fund-color palette
+document.documentElement.setAttribute('data-quant-theme', 'fund-color')
+
+// activate custom local palette
+document.documentElement.setAttribute('data-quant-theme', 'custom')
+```
+
+- Custom theme file example (`src/styles/quant-theme.custom.css`):
+
+```css
+[data-quant-theme='custom'] {
+  --surface-base: #000000;
+  --surface-raised: #050505;
+  --text-primary: #ffffff;
+  --text-secondary: #9b9b9b;
+  --color-signal: #ff9900;
+  --border-default: #888888;
+}
+```
 
 - Learn about [Design Tokens](/tokens)
 - Browse [Components](/components/badge)

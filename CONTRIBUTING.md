@@ -108,7 +108,7 @@ const emit = defineEmits<{
 .quant-button {
   background: var(--surface-raised);
   color: var(--text-primary);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   padding: var(--spacing-2) var(--spacing-4);
 }
 </style>
@@ -118,6 +118,7 @@ const emit = defineEmits<{
 
 - **Always use design tokens**: `var(--surface-raised)`, `var(--spacing-4)`, etc.
 - **No hardcoded colors or spacing**: Use tokens from `midnight.css`
+- **No rounded corners on functional surfaces**: Use `border-radius: 0` for cards, buttons, tables, inputs, and panels
 - **Scoped styles**: Use `<style scoped>` to avoid style leakage
 - **BEM-like naming**: `.quant-button`, `.quant-button__icon`, `.quant-button--disabled`
 

@@ -13,7 +13,7 @@ npx @quanty-ui/cli add button
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | `tone` | `'neutral' \| 'signal' \| 'profit' \| 'loss' \| 'warning'` | `'neutral'` | Semantic color variant |
-| `variant` | `'solid' \| 'outline' \| 'ghost'` | `'solid'` | Visual style |
+| `variant` | `'solid' \| 'outline' \| 'ghost' \| 'primary' \| 'secondary'` | `'solid'` | Visual style |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
 | `disabled` | `boolean` | `false` | Disabled state |
 | `loading` | `boolean` | `false` | Loading state |
@@ -60,6 +60,8 @@ import QuantButton from '@/components/quant/button/QuantButton.vue'
     <QuantButton variant="solid" tone="signal">Solid</QuantButton>
     <QuantButton variant="outline" tone="signal">Outline</QuantButton>
     <QuantButton variant="ghost" tone="signal">Ghost</QuantButton>
+    <QuantButton variant="primary">Primary</QuantButton>
+    <QuantButton variant="secondary">Secondary</QuantButton>
   </div>
 </template>
 ```
