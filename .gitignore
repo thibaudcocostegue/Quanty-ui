@@ -61,6 +61,9 @@ coverage/
 .LSOverride
 ._*
 
+# ── GitHub ──
+.github/
+
 # ── Package manager locks (garder celui que vous utilisez) ──
 # Décommentez selon votre gestionnaire de paquets préféré
 # package-lock.json  # npm
