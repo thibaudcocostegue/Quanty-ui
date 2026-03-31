@@ -4,11 +4,12 @@ Design tokens are the foundation of Quanty UI's visual language. They provide a 
 
 ## Token Architecture
 
-Tokens are organized in three layers:
+Tokens are organized in four layers:
 
 1. **midnight.css** — Design tokens (colors, spacing, typography)
-2. **reset.css** — CSS normalization
-3. **typography.css** — Base typography styles
+2. **fund-color.css** — Theme override hooks
+3. **reset.css** — CSS normalization
+4. **typography.css** — Base typography styles
 
 **Import order matters.** When you import `@quanty-ui/tokens`, these files are loaded in the correct sequence.
 
@@ -18,6 +19,8 @@ Quanty UI now ships with two palettes:
 
 - `midnight` (default)
 - `fund-color`
+
+You can also add an application-local custom theme and activate it with `data-quant-theme="custom"`.
 
 ### Activate fund-color
 
@@ -29,6 +32,19 @@ document.documentElement.setAttribute('data-quant-theme', 'fund-color')
 
 ```typescript
 document.documentElement.removeAttribute('data-quant-theme')
+```
+
+### Activate custom theme
+
+```typescript
+document.documentElement.setAttribute('data-quant-theme', 'custom')
+```
+
+### Custom theme import pattern (client app)
+
+```typescript
+import '@quanty-ui/tokens'
+import './styles/quant-theme.custom.css'
 ```
 
 ### fund-color core values
@@ -64,7 +80,7 @@ This keeps visual structure consistent across products.
 ```css
 .card {
   background: var(--surface-raised);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-default);
 }
 ```
 
