@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onMounted, ref, watch } from 'vue'
 import QuantBadge from '../../components/badge/QuantBadge.vue'
 import QuantButton from '../../components/button/QuantButton.vue'
 import QuantCard from '../../components/card/QuantCard.vue'
@@ -6,6 +7,43 @@ import QuantTable from '../../components/table/QuantTable.vue'
 import QuantHeading from '../../components/heading/QuantHeading.vue'
 import QuantText from '../../components/text/QuantText.vue'
 import QuantCode from '../../components/code/QuantCode.vue'
+import QuantAppHeader from '../../components/app-header/QuantAppHeader.vue'
+import QuantPanel from '../../components/panel/QuantPanel.vue'
+import QuantSectionTitle from '../../components/section-title/QuantSectionTitle.vue'
+import QuantTabs from '../../components/tabs/QuantTabs.vue'
+import QuantKpiBlock from '../../components/kpi-block/QuantKpiBlock.vue'
+import QuantStatusBadge from '../../components/status-badge/QuantStatusBadge.vue'
+import QuantInputField from '../../components/input-field/QuantInputField.vue'
+import QuantLogRow from '../../components/log-row/QuantLogRow.vue'
+
+type QuantTheme = 'midnight' | 'fund-color'
+
+const theme = ref<QuantTheme>('midnight')
+const activeTab = ref('positions')
+const symbol = ref('BTC-USD')
+
+const tabItems = [
+  { label: 'Positions', value: 'positions' },
+  { label: 'Orders', value: 'orders' },
+  { label: 'Alerts', value: 'alerts', disabled: false },
+]
+
+function applyTheme(value: QuantTheme): void {
+  const root = document.documentElement
+  if (value === 'midnight') {
+    root.removeAttribute('data-quant-theme')
+    return
+  }
+  root.setAttribute('data-quant-theme', value)
+}
+
+watch(theme, (value) => {
+  applyTheme(value)
+})
+
+onMounted(() => {
+  applyTheme(theme.value)
+})
 
 const tableColumns = [
   { key: 'ticker', label: 'Ticker' },
@@ -23,7 +61,37 @@ const tableRows = [
 
 <template>
   <main class="playground">
-    <h1 class="playground__title">Quanty UI Playground</h1>
+    <QuantAppHeader title="Quanty UI Playground" subtitle="UI Foundation and Theme Switching">
+      <template #actions>
+        <label class="playground__theme-switcher">
+          <span class="playground__theme-label">Theme</span>
+          <select v-model="theme" class="playground__theme-select">
+            <option value="midnight">midnight</option>
+            <option value="fund-color">fund-color</option>
+          </select>
+        </label>
+      </template>
+    </QuantAppHeader>
+
+    <section class="playground__section">
+      <QuantSectionTitle as="h2">UI Foundation Components</QuantSectionTitle>
+      <QuantPanel title="Structure and Navigation">
+        <div class="playground__grid">
+          <QuantTabs v-model="activeTab" :items="tabItems" />
+          <div class="playground__kpi-row">
+            <QuantKpiBlock label="Equity" value="$152,340" state="default" />
+            <QuantKpiBlock label="Daily PnL" value="+2.14%" state="positive" />
+            <QuantKpiBlock label="Drawdown" value="4.1%" state="attention" />
+          </div>
+          <div class="playground__status-row">
+            <QuantStatusBadge state="positive">Connected</QuantStatusBadge>
+            <QuantStatusBadge state="attention">Attention</QuantStatusBadge>
+            <QuantStatusBadge state="inactive">Inactive</QuantStatusBadge>
+          </div>
+          <QuantInputField v-model="symbol" label="Ticker" placeholder="BTC-USD" />
+        </div>
+      </QuantPanel>
+    </section>
 
     <section class="playground__section">
       <h2 class="playground__section-title">Typography</h2>
@@ -70,7 +138,9 @@ const tableRows = [
     <section class="playground__section">
       <h2 class="playground__section-title">QuantButton</h2>
       <div class="playground__row">
-        <QuantButton tone="signal" variant="solid">Signal</QuantButton>
+        <QuantButton variant="primary">Primary</QuantButton>
+        <QuantButton variant="secondary">Secondary</QuantButton>
+        <QuantButton tone="signal" variant="solid">Signal Solid</QuantButton>
         <QuantButton tone="neutral" variant="solid">Neutral</QuantButton>
         <QuantButton tone="profit" variant="outline">Profit</QuantButton>
         <QuantButton tone="loss" variant="outline">Loss</QuantButton>
@@ -104,6 +174,15 @@ const tableRows = [
         </template>
       </QuantTable>
     </section>
+
+    <section class="playground__section">
+      <h2 class="playground__section-title">QuantLogRow</h2>
+      <QuantPanel title="Execution Log">
+        <QuantLogRow timestamp="14:31:08" message="Order filled at market" />
+        <QuantLogRow timestamp="14:32:42" message="Risk threshold reached" level="attention" />
+        <QuantLogRow timestamp="14:35:03" message="Connection heartbeat OK" />
+      </QuantPanel>
+    </section>
   </main>
 </template>
 
@@ -115,6 +194,24 @@ const tableRows = [
   color: var(--text-primary);
   display: grid;
   gap: var(--spacing-6);
+}
+
+.playground__theme-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.playground__theme-label {
+  color: var(--text-secondary);
+  font-size: var(--font-size-xs);
+}
+
+.playground__theme-select {
+  border: 1px solid var(--border-default);
+  background: var(--surface-base);
+  color: var(--text-primary);
+  padding: var(--spacing-1) var(--spacing-2);
 }
 
 .playground__title {
@@ -143,6 +240,18 @@ const tableRows = [
   gap: var(--spacing-2);
 }
 
+.playground__grid {
+  display: grid;
+  gap: var(--spacing-4);
+}
+
+.playground__kpi-row,
+.playground__status-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--spacing-3);
+}
+
 .playground__row {
   display: flex;
   flex-wrap: wrap;
@@ -168,5 +277,12 @@ const tableRows = [
 
 .playground__change--loss {
   color: var(--color-loss);
+}
+
+@media (max-width: 900px) {
+  .playground__kpi-row,
+  .playground__status-row {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

@@ -51,7 +51,7 @@ const props = withDefaults(defineProps<QuantBadgeProps>(), {
   display: inline-flex;
   align-items: center;
   font-weight: var(--font-weight-medium);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
 }
 
 .quant-badge--md {
@@ -75,7 +75,7 @@ const props = withDefaults(defineProps<QuantBadgeProps>(), {
 .quant-button {
   background: #3fb950;
   padding: 8px 16px;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 ```
 
@@ -84,7 +84,20 @@ const props = withDefaults(defineProps<QuantBadgeProps>(), {
 .quant-button {
   background: var(--color-profit);
   padding: var(--spacing-2) var(--spacing-4);
-  border-radius: var(--radius-md);
+  border-radius: 0;
+}
+```
+
+### 1.1 No Rounded Corners
+
+All functional components must use square corners:
+
+```css
+.quant-card,
+.quant-button,
+.quant-input,
+.quant-table-wrap {
+  border-radius: 0;
 }
 ```
 

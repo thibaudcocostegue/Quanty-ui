@@ -9,9 +9,10 @@ The `@quanty-ui/tokens` package contains the **CSS custom properties** that form
 ```
 packages/tokens/
 ├── midnight.css      # Design tokens (colors, spacing, typography)
+├── fund-color.css    # Theme overrides (strict black/orange/gray/white)
 ├── reset.css         # CSS normalization
 ├── typography.css    # Base typography styles
-├── index.css         # Entry point (imports all three)
+├── index.css         # Entry point (imports all four)
 └── package.json
 ```
 
@@ -21,8 +22,9 @@ packages/tokens/
 
 ```css
 @import './midnight.css';    /* 1. Tokens first (variables) */
-@import './reset.css';       /* 2. Then reset (normalize) */
-@import './typography.css';  /* 3. Finally typography (base styles) */
+@import './fund-color.css';  /* 2. Theme override hooks */
+@import './reset.css';       /* 3. Then reset (normalize) */
+@import './typography.css';  /* 4. Finally typography (base styles) */
 ```
 
 This is automated in `index.css`, so users simply:
@@ -30,6 +32,23 @@ This is automated in `index.css`, so users simply:
 ```typescript
 // main.ts
 import '@quanty-ui/tokens'
+```
+
+## Theme Strategy
+
+- `midnight` is the default theme (no `data-quant-theme` attribute)
+- `fund-color` is activated with `data-quant-theme="fund-color"`
+- `custom` themes are application-local CSS files that override semantic tokens
+
+Example custom theme file (in client app):
+
+```css
+[data-quant-theme='custom'] {
+  --surface-base: #000000;
+  --text-primary: #ffffff;
+  --color-signal: #ff9900;
+  --border-default: #888888;
+}
 ```
 
 ## Token Categories

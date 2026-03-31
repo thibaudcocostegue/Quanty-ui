@@ -105,7 +105,7 @@ function getAlignClass(align?: QuantTableAlign): string {
   width: 100%;
   overflow-x: auto;
   border: 1px solid var(--border-default);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   background: var(--surface-raised);
 }
 
@@ -119,9 +119,9 @@ function getAlignClass(align?: QuantTableAlign): string {
 
 .quant-table__head {
   padding: var(--spacing-3) var(--spacing-4);
-  background: var(--surface-overlay);
+  background: var(--surface-base);
   border-bottom: 1px solid var(--border-default);
-  color: var(--text-secondary);
+  color: var(--color-signal);
   font-weight: var(--font-weight-semibold);
   font-size: var(--font-size-xs);
 }
@@ -131,7 +131,7 @@ function getAlignClass(align?: QuantTableAlign): string {
 }
 
 .quant-table__row:hover {
-  background: color-mix(in srgb, var(--surface-subtle) 55%, transparent);
+  background: var(--surface-subtle);
 }
 
 .quant-table__cell {
@@ -147,7 +147,7 @@ function getAlignClass(align?: QuantTableAlign): string {
 }
 
 .quant-table--striped .quant-table__row:nth-child(even) {
-  background: color-mix(in srgb, var(--surface-subtle) 35%, transparent);
+  background: color-mix(in srgb, var(--surface-subtle) 60%, transparent);
 }
 
 .quant-table__cell--left {

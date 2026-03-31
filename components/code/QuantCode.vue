@@ -26,14 +26,20 @@ const tag = props.inline ? 'code' : 'pre'
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
   margin: 0;
+  border: 1px solid var(--border-default);
+  border-radius: 0;
+  background: var(--surface-base);
+  padding: var(--spacing-1) var(--spacing-2);
 }
 
 .quant-code--inline {
-  display: inline;
+  display: inline-flex;
+  align-items: center;
 }
 
 .quant-code--block {
   display: block;
+  width: 100%;
 }
 
 /* Variant styles */
@@ -42,6 +48,7 @@ const tag = props.inline ? 'code' : 'pre'
   color: var(--color-signal);
   font-weight: var(--font-weight-medium);
   letter-spacing: 0.05em;
+  border-color: var(--color-signal);
 }
 
 .quant-code--numeric {
@@ -54,7 +61,6 @@ const tag = props.inline ? 'code' : 'pre'
   font-size: var(--font-size-sm);
   color: var(--text-secondary);
   background: var(--surface-inset);
-  padding: 2px 6px;
-  border-radius: var(--radius-sm);
+  border-color: var(--border-default);
 }
 </style>

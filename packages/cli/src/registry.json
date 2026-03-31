@@ -52,6 +52,62 @@
         "code/index.ts"
       ],
       "dependencies": []
+    },
+    "app-header": {
+      "files": [
+        "app-header/QuantAppHeader.vue",
+        "app-header/index.ts"
+      ],
+      "dependencies": []
+    },
+    "panel": {
+      "files": [
+        "panel/QuantPanel.vue",
+        "panel/index.ts"
+      ],
+      "dependencies": []
+    },
+    "section-title": {
+      "files": [
+        "section-title/QuantSectionTitle.vue",
+        "section-title/index.ts"
+      ],
+      "dependencies": []
+    },
+    "tabs": {
+      "files": [
+        "tabs/QuantTabs.vue",
+        "tabs/index.ts"
+      ],
+      "dependencies": []
+    },
+    "kpi-block": {
+      "files": [
+        "kpi-block/QuantKpiBlock.vue",
+        "kpi-block/index.ts"
+      ],
+      "dependencies": []
+    },
+    "status-badge": {
+      "files": [
+        "status-badge/QuantStatusBadge.vue",
+        "status-badge/index.ts"
+      ],
+      "dependencies": []
+    },
+    "input-field": {
+      "files": [
+        "input-field/QuantInputField.vue",
+        "input-field/index.ts"
+      ],
+      "dependencies": []
+    },
+    "log-row": {
+      "files": [
+        "log-row/QuantLogRow.vue",
+        "log-row/index.ts"
+      ],
+      "dependencies": []
     }
   }
 }

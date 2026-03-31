@@ -1,0 +1,44 @@
+/**
+ * ============================================================
+ * QUANT UI - Theme Overrides
+ * Theme: Fund Color
+ * ============================================================
+ * Active when `data-quant-theme="fund-color"` is present on html/body/root.
+ */
+
+:root[data-quant-theme='fund-color'],
+[data-quant-theme='fund-color'] {
+  --surface-base: #000000;
+  --surface-raised: #000000;
+  --surface-overlay: #000000;
+  --surface-subtle: color-mix(in srgb, #888888 14%, #000000);
+  --surface-inset: #000000;
+
+  --text-primary: #ffffff;
+  --text-secondary: #888888;
+  --text-muted: #888888;
+  --text-inverse: #000000;
+  --text-link: #ff9900;
+
+  --color-profit: #ffffff;
+  --color-loss: #888888;
+  --color-neutral: #888888;
+  --color-signal: #ff9900;
+  --color-warning: #ff9900;
+
+  --color-profit-bg: color-mix(in srgb, #ffffff 12%, transparent);
+  --color-loss-bg: color-mix(in srgb, #888888 16%, transparent);
+  --color-signal-bg: color-mix(in srgb, #ff9900 16%, transparent);
+  --color-warning-bg: color-mix(in srgb, #ff9900 16%, transparent);
+
+  --border-subtle: color-mix(in srgb, #888888 35%, transparent);
+  --border-default: #888888;
+  --border-strong: #888888;
+  --border-focus: #ff9900;
+
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-glow-profit: none;
+  --shadow-glow-loss: none;
+}
