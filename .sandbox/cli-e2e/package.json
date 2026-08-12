@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@quant-ui/tokens": "file:../../packages/tokens",
+    "@quanty-ui/tokens": "file:../../packages/tokens",
     "vue": "^3.4.0"
   },
   "devDependencies": {
