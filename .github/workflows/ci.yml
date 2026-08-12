@@ -21,7 +21,7 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm lint
+      # lint is disabled until ESLint is actually configured (no config file exists yet)
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
