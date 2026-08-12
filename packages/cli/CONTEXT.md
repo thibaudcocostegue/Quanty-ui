@@ -117,7 +117,7 @@ The registry maps component names to their files and dependencies:
 ```json
 {
   "version": "1",
-  "baseUrl": "https://raw.githubusercontent.com/thibaudcocostegue/Quanty-ui/quanty-ui-cli-v0.1.0/components",
+  "baseUrl": "https://raw.githubusercontent.com/thibaudcocostegue/Quanty-ui/cli-v0.1.0/components",
   "components": {
     "badge": {
       "files": [
@@ -160,7 +160,7 @@ The registry maps component names to their files and dependencies:
 
 **Important:** Update the git tag in `baseUrl` after registry changes:
 ```
-baseUrl: .../quanty-ui-cli-v0.1.0/...
+baseUrl: .../cli-v0.1.0/...
          ↑ Must match your git tag
 ```
 
@@ -222,7 +222,7 @@ export default defineBuildConfig({
 Components are fetched from GitHub raw URLs:
 
 ```
-https://raw.githubusercontent.com/thibaudcocostegue/Quanty-ui/quanty-ui-cli-v0.1.0/components/badge/QuantBadge.vue
+https://raw.githubusercontent.com/thibaudcocostegue/Quanty-ui/cli-v0.1.0/components/badge/QuantBadge.vue
                                    ↑ repo owner       ↑ repo name    ↑ git tag           ↑ component path
 ```
 
@@ -243,8 +243,8 @@ node packages/cli/dist/index.mjs add badge
 
 1. Update version in `package.json`
 2. Build: `pnpm build`
-3. Create git tag: `git tag quanty-ui-cli-v0.1.0`
-4. Push tag: `git push origin quanty-ui-cli-v0.1.0`
+3. Create git tag: `git tag cli-v0.1.0`
+4. Push tag: `git push origin cli-v0.1.0`
 5. Publish to npm: `npm publish` (from `packages/cli`)
 
 **⚠️ Critical:** Git tag must be pushed BEFORE publishing to npm, since `registry.json` references the tag in URLs.
