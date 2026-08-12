@@ -174,6 +174,7 @@ Target ~60 lines per component. If larger:
 | **QuantHeading** | Semantic headings (h1-h6) | `level`, `color` |
 | **QuantText** | Paragraph/label/caption | `variant`, `color`, `as` |
 | **QuantCode** | Monospace code snippets | `variant`, `inline` |
+| **QuantModal** | Dialog overlay (teleported, closable) | `modelValue`, `title`, `size`, `closeOnOverlay`, `closeOnEsc` |
 
 ## Slots Pattern
 

@@ -15,6 +15,7 @@ import QuantKpiBlock from '../../components/kpi-block/QuantKpiBlock.vue'
 import QuantStatusBadge from '../../components/status-badge/QuantStatusBadge.vue'
 import QuantInputField from '../../components/input-field/QuantInputField.vue'
 import QuantLogRow from '../../components/log-row/QuantLogRow.vue'
+import QuantModal from '../../components/modal/QuantModal.vue'
 
 type QuantTheme = 'midnight' | 'fund-color'
 
@@ -51,6 +52,8 @@ const tableColumns = [
   { key: 'change', label: 'Change', align: 'right' as const },
   { key: 'signal', label: 'Signal' },
 ]
+
+const showModal = ref(false)
 
 const tableRows = [
   { id: '1', ticker: 'BTCUSD', price: 68342.18, change: '+2.14%', signal: 'Long' },
@@ -182,6 +185,18 @@ const tableRows = [
         <QuantLogRow timestamp="14:32:42" message="Risk threshold reached" level="attention" />
         <QuantLogRow timestamp="14:35:03" message="Connection heartbeat OK" />
       </QuantPanel>
+    </section>
+
+    <section class="playground__section">
+      <h2 class="playground__section-title">QuantModal</h2>
+      <QuantButton @click="showModal = true">Close Position</QuantButton>
+      <QuantModal v-model="showModal" title="Confirm Close">
+        <QuantText>Are you sure you want to close this position at market?</QuantText>
+        <template #footer>
+          <QuantButton variant="ghost" @click="showModal = false">Cancel</QuantButton>
+          <QuantButton tone="loss" @click="showModal = false">Close Position</QuantButton>
+        </template>
+      </QuantModal>
     </section>
   </main>
 </template>
