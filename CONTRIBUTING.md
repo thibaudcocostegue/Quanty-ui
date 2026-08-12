@@ -39,17 +39,16 @@ npm run build
 ```
 src/
 ├── index.ts              # Main entry point, plugin registration
-├── tokens/               # Design tokens (CSS variables)
-│   ├── midnight.css      # Color palette and theme
-│   ├── reset.css         # CSS reset
-│   └── typography.css    # Typography styles
-├── components/           # Vue components
-│   └── quantButton/      # Component folder (camelCase)
-│       ├── quantButton.vue
-│       ├── quantButton.spec.ts
-│       └── index.ts
-└── composables/          # Vue composables
-    └── useTheme.ts
+└── tokens/                # Design tokens (CSS variables)
+    ├── midnight.css      # Color palette and theme
+    ├── reset.css         # CSS reset
+    └── typography.css    # Typography styles
+
+components/                # Vue components (top-level, one folder per component)
+└── button/
+    ├── QuantButton.vue
+    ├── QuantButton.spec.ts
+    └── index.ts
 ```
 
 ---
@@ -208,13 +207,17 @@ Despite AI assistance, **you are responsible** for:
 
 ### Component Testing
 
+Tests use [Vitest](https://vitest.dev/) + `@vue/test-utils` and live next to the component they cover, as `ComponentName.spec.ts` inside its `components/<name>/` folder (see `components/button/QuantButton.spec.ts` for a reference example).
+
 ```bash
-# Run tests (when implemented)
+# Run tests once
 npm run test
 
 # Run tests in watch mode
 npm run test:watch
 ```
+
+Tests are also a required gate: they run in CI on every PR/push, and `prepublishOnly` blocks `npm publish` if they fail.
 
 ### Manual Testing
 
@@ -230,32 +233,25 @@ Create test pages in a local `playground/` folder (gitignored) to test component
 
 ## 📦 Creating a New Component
 
-1. **Create component folder** in `src/components/`:
+1. **Create component folder** in `components/`:
    ```
-   src/components/quantButton/
+   components/quantButton/
    ```
 
-2. **Create component file**: `quantButton.vue`
+2. **Create component file**: `QuantButton.vue`
 
 3. **Create index.ts** for exports:
    ```typescript
-   export { default as quantButton } from './quantButton.vue'
+   export { default } from './QuantButton.vue'
    ```
 
-4. **Register in main index.ts**:
-   ```typescript
-   import quantButton from './components/quantButton/quantButton.vue'
-   
-   const components = [quantButton]
-   
-   export { quantButton }
-   ```
+4. **Use design tokens** exclusively in your styles
 
-5. **Use design tokens** exclusively in your styles
+5. **Add TypeScript types** for all props and emits
 
-6. **Add TypeScript types** for all props and emits
+6. **Add a `ComponentName.spec.ts`** next to the component covering its props/classes/emits — see `components/button/QuantButton.spec.ts`
 
-7. **Test thoroughly** before submitting PR
+7. **Test thoroughly** before submitting PR (`npm run test`, and manually via `pnpm --filter playground dev`)
 
 ---
 

@@ -123,6 +123,18 @@ npm run build
 npm run typecheck
 ```
 
+### 🖼️ Component Playground
+
+The `playground/` package showcases every component in a live demo page.
+
+```bash
+# Install dependencies (monorepo root)
+pnpm install
+
+# Start the playground dev server
+pnpm --filter playground dev
+```
+
 ---
 
 ## 🤝 Contributing
