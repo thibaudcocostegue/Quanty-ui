@@ -25,15 +25,15 @@ Quanty-ui is a specialized design system and component library built for financi
 ## 🚀 Installation
 
 ```bash
-npm install @quant-ui/core
+npm install @quanty-ui/core
 ```
 
 ```bash
-yarn add @quant-ui/core
+yarn add @quanty-ui/core
 ```
 
 ```bash
-pnpm add @quant-ui/core
+pnpm add @quanty-ui/core
 ```
 
 ---
@@ -44,8 +44,8 @@ pnpm add @quant-ui/core
 
 ```typescript
 import { createApp } from 'vue'
-import QuantUI from '@quant-ui/core'
-import '@quant-ui/core/styles'
+import QuantUI from '@quanty-ui/core'
+import '@quanty-ui/core/styles'
 
 const app = createApp(App)
 app.use(QuantUI)
@@ -56,7 +56,7 @@ app.mount('#app')
 
 ```vue
 <script setup lang="ts">
-import { QuantButton, QuantBadge } from '@quant-ui/core'
+import { QuantButton, QuantBadge } from '@quanty-ui/core'
 </script>
 
 <template>
@@ -123,6 +123,18 @@ npm run build
 npm run typecheck
 ```
 
+### 🖼️ Component Playground
+
+The `playground/` package showcases every component in a live demo page.
+
+```bash
+# Install dependencies (monorepo root)
+pnpm install
+
+# Start the playground dev server
+pnpm --filter playground dev
+```
+
 ---
 
 ## 🤝 Contributing
@@ -180,7 +192,7 @@ See [LICENSE](LICENSE) file for details.
 - [Documentation](#) _(coming soon)_
 - [Component Gallery](#) _(coming soon)_
 - [GitHub Repository](https://github.com/thibaudcocostegue/Quanty-ui)
-- [npm Package](https://www.npmjs.com/package/@quant-ui/core)
+- [npm Package](https://www.npmjs.com/package/@quanty-ui/core)
 
 ---
 

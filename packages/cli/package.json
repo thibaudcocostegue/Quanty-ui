@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "@clack/prompts": "^1.1.0",
-    "@quanty-ui/cli": "file:/Users/tibo/projet/Quanty-ui/packages/cli/quanty-ui-cli-0.1.0.tgz",
     "citty": "^0.1.6",
     "fs-extra": "^11.3.4",
     "ofetch": "^1.5.1",
@@ -25,7 +24,8 @@
     "tsx": "^4.21.0"
   },
   "scripts": {
-    "build": "unbuild"
+    "build": "unbuild",
+    "prepublishOnly": "pnpm build"
   },
   "devDependencies": {
     "typescript": "^5.9.3",

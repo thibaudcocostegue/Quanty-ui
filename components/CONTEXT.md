@@ -250,6 +250,27 @@ Use `font-variant-numeric: tabular-nums` for aligned numbers:
 }
 ```
 
+## Testing
+
+Each component should have a `ComponentName.spec.ts` file co-located next to its `.vue` file (and `index.ts`), using [Vitest](https://vitest.dev/) + `@vue/test-utils`:
+
+```
+components/
+└── button/
+    ├── QuantButton.vue
+    ├── QuantButton.spec.ts   # Co-located test file
+    └── index.ts
+```
+
+Use `components/button/QuantButton.spec.ts` as the reference example — it covers slot rendering, class composition from props, emitted events, and disabled/loading states.
+
+```bash
+npm run test        # run once
+npm run test:watch  # watch mode
+```
+
+Tests run in CI on every PR/push and block `npm publish` via `prepublishOnly` if they fail.
+
 ## Testing in Playground
 
 After creating a component, add it to `playground/src/App.vue`:
