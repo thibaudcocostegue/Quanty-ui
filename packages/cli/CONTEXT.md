@@ -72,6 +72,12 @@ Copies a component from GitHub to the user's project:
 
 **Location:** `packages/cli/src/commands/add.ts`
 
+### `quanty-ui list`
+
+Prints every component name in `registry.json`, alphabetically, with its dependencies (if any). Reads the registry directly — no network call.
+
+**Location:** `packages/cli/src/commands/list.ts`
+
 ```typescript
 import { defineCommand } from 'citty'
 import { confirm, isCancel } from '@clack/prompts'
