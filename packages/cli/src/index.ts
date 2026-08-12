@@ -3,6 +3,7 @@
 import { defineCommand, runMain } from 'citty'
 import { initCommand } from './commands/init'
 import { addCommand } from './commands/add'
+import { listCommand } from './commands/list'
 
 const init = defineCommand({
 	meta: {
@@ -37,6 +38,16 @@ const add = defineCommand({
 	},
 })
 
+const list = defineCommand({
+	meta: {
+		name: 'list',
+		description: 'List all components available to add',
+	},
+	run: async () => {
+		await listCommand()
+	},
+})
+
 const main = defineCommand({
 	meta: {
 		name: 'quant-ui',
@@ -46,6 +57,7 @@ const main = defineCommand({
 	subCommands: {
 		init,
 		add,
+		list,
 	},
 })
 
