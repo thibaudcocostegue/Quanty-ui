@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "baseUrl": "https://raw.githubusercontent.com/thibaudcocostegue/Quanty-ui/quanty-ui-cli-v0.1.0/components",
+  "baseUrl": "https://raw.githubusercontent.com/thibaudcocostegue/Quanty-ui/cli-v0.1.0/components",
   "components": {
     "badge": {
       "files": [
