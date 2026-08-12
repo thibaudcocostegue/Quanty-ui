@@ -24,44 +24,33 @@ Quanty-ui is a specialized design system and component library built for financi
 
 ## 🚀 Installation
 
-```bash
-npm install @quanty-ui/core
-```
+Quanty-ui follows the **shadcn model**: components are copied as source files into your project via the CLI, not installed as a bundled npm dependency. This keeps every component fully owned and customizable in your codebase.
 
 ```bash
-yarn add @quanty-ui/core
+npx @quanty-ui/cli init
 ```
 
-```bash
-pnpm add @quanty-ui/core
-```
+This installs `@quanty-ui/tokens` (design tokens) and configures your chosen theme in `main.ts`.
 
 ---
 
 ## 📖 Usage
 
-### Global Registration
+### Adding a Component
 
-```typescript
-import { createApp } from 'vue'
-import QuantUI from '@quanty-ui/core'
-import '@quanty-ui/core/styles'
-
-const app = createApp(App)
-app.use(QuantUI)
-app.mount('#app')
+```bash
+npx @quanty-ui/cli add button
 ```
 
-### Individual Component Import
+This copies `QuantButton.vue` + `index.ts` into your project's components directory.
 
 ```vue
 <script setup lang="ts">
-import { QuantButton, QuantBadge } from '@quanty-ui/core'
+import QuantButton from '@/components/quant/button/QuantButton.vue'
 </script>
 
 <template>
   <QuantButton variant="signal">Execute Trade</QuantButton>
-  <QuantBadge type="profit">+12.5%</QuantBadge>
 </template>
 ```
 
@@ -110,17 +99,14 @@ import { QuantButton, QuantBadge } from '@quanty-ui/core'
 ## 🛠️ Development
 
 ```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build library
-npm run build
+# Install dependencies (monorepo root)
+pnpm install
 
 # Type checking
-npm run typecheck
+pnpm typecheck
+
+# Run tests
+pnpm test
 ```
 
 ### 🖼️ Component Playground
@@ -192,7 +178,8 @@ See [LICENSE](LICENSE) file for details.
 - [Documentation](#) _(coming soon)_
 - [Component Gallery](#) _(coming soon)_
 - [GitHub Repository](https://github.com/thibaudcocostegue/Quanty-ui)
-- [npm Package](https://www.npmjs.com/package/@quanty-ui/core)
+- [CLI on npm](https://www.npmjs.com/package/@quanty-ui/cli)
+- [Tokens on npm](https://www.npmjs.com/package/@quanty-ui/tokens)
 
 ---
 

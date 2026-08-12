@@ -19,36 +19,37 @@ Thank you for your interest in contributing to Quanty-ui! This guide will help y
 git clone https://github.com/thibaudcocostegue/Quanty-ui.git
 cd Quanty-ui
 
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
+# Install dependencies (pnpm monorepo)
+pnpm install
 
 # Run type checking
-npm run typecheck
+pnpm typecheck
 
-# Build the library
-npm run build
+# Run tests
+pnpm test
+
+# Preview components live
+pnpm --filter playground dev
 ```
 
 ---
 
 ## 📁 Project Structure
 
-```
-src/
-├── index.ts              # Main entry point, plugin registration
-└── tokens/                # Design tokens (CSS variables)
-    ├── midnight.css      # Color palette and theme
-    ├── reset.css         # CSS reset
-    └── typography.css    # Typography styles
+Quanty-ui is distributed via the `@quanty-ui/cli` (shadcn-style copy model, see `packages/cli/`) and `@quanty-ui/tokens` (design tokens, see `packages/tokens/`) — there is no bundled npm component library.
 
-components/                # Vue components (top-level, one folder per component)
+```
+components/                # Vue component source (top-level, one folder per component)
 └── button/
     ├── QuantButton.vue
     ├── QuantButton.spec.ts
     └── index.ts
+
+packages/
+├── cli/                    # @quanty-ui/cli — scaffolds components into consumer projects
+└── tokens/                 # @quanty-ui/tokens — design tokens (CSS variables)
+
+playground/                 # Vite app showcasing every component
 ```
 
 ---
@@ -221,13 +222,13 @@ Tests are also a required gate: they run in CI on every PR/push, and `prepublish
 
 ### Manual Testing
 
-Test your components in the dev environment:
+Test your components visually in the playground:
 
 ```bash
-npm run dev
+pnpm --filter playground dev
 ```
 
-Create test pages in a local `playground/` folder (gitignored) to test components visually.
+Add your component to `playground/src/App.vue` to see it live.
 
 ---
 
