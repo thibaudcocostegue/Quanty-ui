@@ -5,7 +5,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thibaudcocostegue/Quanty-ui",
+    "url": "git+https://github.com/thibaudcocostegue/Quanty-ui.git",
     "directory": "packages/cli"
   },
   "bugs": {
@@ -13,7 +13,7 @@
   },
   "homepage": "https://github.com/thibaudcocostegue/Quanty-ui#readme",
   "bin": {
-    "quanty-ui": "./dist/index.mjs"
+    "quanty-ui": "dist/index.mjs"
   },
   "dependencies": {
     "@clack/prompts": "^1.1.0",
