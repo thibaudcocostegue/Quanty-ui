@@ -24,4 +24,4 @@ jobs:
       # lint is disabled until ESLint is actually configured (no config file exists yet)
       - run: pnpm typecheck
       - run: pnpm test
-      - run: pnpm build
+      - run: pnpm --filter @quanty-ui/cli build
